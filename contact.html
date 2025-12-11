@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LJR Engineering | 문의</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="location.href='index.html'">
+        <span class="brand-mark">LJR</span>
+        <span class="brand-sub">ENGINEERING</span>
+      </div>
+      <nav class="nav">
+        <a href="about.html">소개</a>
+        <a href="services.html">전문 분야</a>
+        <a href="board.html">기술 노트</a>
+        <a href="files.html">자료실</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <button class="cta" onclick="location.href='contact.html'">상담 문의</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container contact">
+        <div>
+          <p class="eyebrow">CONTACT</p>
+          <h2>프로젝트를 시작해보세요</h2>
+          <p class="lead">ljr@ljr-engineering.com · 010-4609-9520</p>
+          <div class="contact-grid" style="margin-top:14px;">
+            <div class="contact-card">
+              <div class="icon square">✉️</div>
+              <h4>Email</h4>
+              <p>ljr@ljr-engineering.com</p>
+            </div>
+            <div class="contact-card">
+              <div class="icon square">📞</div>
+              <h4>Phone</h4>
+              <p>010-4609-9520</p>
+            </div>
+            <div class="contact-card">
+              <div class="icon square">📍</div>
+              <h4>Location</h4>
+              <p>Busan, Republic of Korea</p>
+            </div>
+          </div>
+        </div>
+        <div class="cta-box">
+          <h3>빠른 상담이 필요하신가요?</h3>
+          <p>공정/금형 데이터를 공유해주시면 24시간 이내에 대응 방향을 드립니다.</p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+            <button class="btn primary" onclick="location.href='files.html'">자료 올리기</button>
+            <button class="btn ghost" onclick="location.href='board.html'">기술 노트 작성</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand small">
+          <span class="brand-mark">LJR</span>
+          <span class="brand-sub">ENGINEERING</span>
+        </div>
+        <p class="muted-text">Cold Forging · Plastic Working · Machining Design</p>
+      </div>
+      <p class="muted-text">© <span id="year"></span> LJR Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

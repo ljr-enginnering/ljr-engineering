@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LJR Engineering | 기술 노트</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="location.href='index.html'">
+        <span class="brand-mark">LJR</span>
+        <span class="brand-sub">ENGINEERING</span>
+      </div>
+      <nav class="nav">
+        <a href="about.html">소개</a>
+        <a href="services.html">전문 분야</a>
+        <a href="board.html">기술 노트</a>
+        <a href="files.html">자료실</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <button class="cta" onclick="location.href='contact.html'">상담 문의</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container section-header">
+        <p class="eyebrow">TECH NOTE</p>
+        <h2>현장에서 바로 쓰는 기술 노트</h2>
+        <p class="lead">간단히 제목·내용·태그를 입력해 게시판처럼 관리하세요. 데이터는 브라우저에 저장됩니다.</p>
+      </div>
+      <div class="container board">
+        <div class="board-form">
+          <input id="post-title" type="text" placeholder="제목" />
+          <input id="post-tags" type="text" placeholder="태그 (쉼표로 구분)" />
+          <textarea id="post-content" rows="5" placeholder="내용을 입력하세요"></textarea>
+          <button class="btn primary" onclick="addPost()">게시하기</button>
+        </div>
+        <div id="post-list" class="post-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand small">
+          <span class="brand-mark">LJR</span>
+          <span class="brand-sub">ENGINEERING</span>
+        </div>
+        <p class="muted-text">Cold Forging · Plastic Working · Machining Design</p>
+      </div>
+      <p class="muted-text">© <span id="year"></span> LJR Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const POST_KEY = 'ljr_posts_v2';
+    const defaultPosts = [
+      {
+        id: 'p1',
+        title: '냉간단조 CV Joint 금형 수명 200% 상승 사례',
+        content: '프리스트레스 링 설계와 소재 유동 재배치로 금형 수명을 2배 이상 확보. 톤수 안정화 및 치수 편차 감소.',
+        date: '2025-01-05',
+        tags: ['Cold Forging', 'CV Joint', '금형수명']
+      },
+      {
+        id: 'p2',
+        title: '방산 부품용 고강도 소재 트라이벌·윤활 최적화',
+        content: 'Ti/고장력강 소재의 표면 손상 감소를 위해 윤활제 변경, 샷피닝 후코팅 조합으로 스티킹 억제.',
+        date: '2025-01-02',
+        tags: ['방산', '윤활', '트라이볼로지']
+      }
+    ];
+
+    function loadPosts() {
+      const raw = localStorage.getItem(POST_KEY);
+      if (!raw) { localStorage.setItem(POST_KEY, JSON.stringify(defaultPosts)); return defaultPosts; }
+      try { return JSON.parse(raw); } catch { return defaultPosts; }
+    }
+    function savePosts(posts) { localStorage.setItem(POST_KEY, JSON.stringify(posts)); }
+
+    function renderPosts() {
+      const list = document.getElementById('post-list');
+      const posts = loadPosts();
+      if (!posts.length) { list.innerHTML = '<div class="empty">아직 게시물이 없습니다.</div>'; return; }
+      list.innerHTML = posts.map(post => `
+        <article class="post">
+          <div class="post-top">
+            <div>
+              <p class="overline">${post.date}</p>
+              <h3>${post.title}</h3>
+              <p class="post-text">${post.content}</p>
+            </div>
+            <button class="delete" aria-label="delete" onclick="deletePost('${post.id}')">×</button>
+          </div>
+          <div class="tag-row">
+            ${post.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function addPost() {
+      const title = (document.getElementById('post-title').value || '').trim();
+      const content = (document.getElementById('post-content').value || '').trim();
+      const tags = (document.getElementById('post-tags').value || '')
+        .split(',').map(t => t.trim()).filter(Boolean);
+      if (!title || !content) return alert('제목과 내용을 입력해주세요.');
+      const posts = loadPosts();
+      const newPost = { id: `p${Date.now()}`, title, content, date: new Date().toISOString().slice(0, 10), tags };
+      savePosts([newPost, ...posts]);
+      document.getElementById('post-title').value = '';
+      document.getElementById('post-content').value = '';
+      document.getElementById('post-tags').value = '';
+      renderPosts();
+    }
+
+    function deletePost(id) {
+      const posts = loadPosts().filter(p => p.id !== id);
+      savePosts(posts);
+      renderPosts();
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderPosts();
+  </script>
+</body>
+</html>

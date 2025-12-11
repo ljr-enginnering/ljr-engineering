@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LJR Engineering | 전문 분야</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand" onclick="location.href='index.html'">
+        <span class="brand-mark">LJR</span>
+        <span class="brand-sub">ENGINEERING</span>
+      </div>
+      <nav class="nav">
+        <a href="about.html">소개</a>
+        <a href="services.html">전문 분야</a>
+        <a href="board.html">기술 노트</a>
+        <a href="files.html">자료실</a>
+        <a href="contact.html">문의</a>
+      </nav>
+      <button class="cta" onclick="location.href='contact.html'">상담 문의</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container section-header">
+        <p class="eyebrow">SERVICES</p>
+        <h2>무엇을 제공하나요?</h2>
+        <p class="lead">냉간단조·소성가공 금형 설계, 공정 해석, 시제품, 양산성 검증까지 end-to-end 서비스.</p>
+      </div>
+      <div class="container service-grid">
+        <div class="service-card">
+          <div class="icon square">📐</div>
+          <h3>금형·치공구 설계</h3>
+          <p>프레스 금형, 다단 포머, 절삭용 지그, 정렬/프리로드 설계.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon square">📊</div>
+          <h3>FEM/공정 해석</h3>
+          <p>소재 유동, 하중, 변형량 예측. 금형 수명·윤활·냉각 전략 제안.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon square">🧪</div>
+          <h3>시제품 & 양산 검증</h3>
+          <p>시제품 제작, 치수/거칠기 검사, 사이클 타임·톤수 검증.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon square">⚙️</div>
+          <h3>라인 셋업·트러블슈팅</h3>
+          <p>부산 기반 빠른 대응, 공정 셋업, 품질 개선 코칭.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="brand small">
+          <span class="brand-mark">LJR</span>
+          <span class="brand-sub">ENGINEERING</span>
+        </div>
+        <p class="muted-text">Cold Forging · Plastic Working · Machining Design</p>
+      </div>
+      <p class="muted-text">© <span id="year"></span> LJR Engineering. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
